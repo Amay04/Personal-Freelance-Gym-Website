@@ -1,0 +1,154 @@
+   /* google font */
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,300&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+.navbar{
+    background-color: #192734;
+}
+#heading{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #192734;
+    height: 100vh;
+    width: 100%;
+}
+#heading img{
+    width: 400px;
+    padding: auto;
+    text-align: center;
+}
+#heading div{
+    color: #fff;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 1px;
+    font-size: 20px;
+}
+#heading div button{
+    padding: 10px 15px;
+    text-transform: uppercase;
+    background-color: #09a75d;
+    border: none;
+    color: #000;
+    font-weight: 500;
+    font-family: sans-serif;
+    border-radius: 5px;
+}
+/* Achievement */
+
+#achievement {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-weight: 500;
+    height: 50vh;
+}
+#achievement i{
+        font-size: 37px;
+}
+#achievement h1{
+    font-weight: bolder;
+}
+
+/* features */
+
+#features{
+    background-color: #192734;
+    color: #fff;
+    padding: 10%;
+    font-size: 16px;
+}
+
+.features-box{
+    padding:25px;
+    text-align: center;
+}
+.features-box i {
+    font-size: 50px;
+    padding-bottom: 14px;
+}
+
+/* pricing selector */
+#pricing{
+    padding:10px 50px 10px;
+    text-align: center;
+}
+.pricing-column{
+    padding:3% 2%;
+}
+
+/* testimonials */
+#testimonials{
+ background-color: #192734;
+ color: #fff;
+ text-align: center;
+}
+#testimonials h2{
+    padding: 50px 200px 10px 200px;
+}
+.testimonials-image{
+    width: 10%;
+    border-radius:100%;
+    padding-bottom: 50px;
+}
+
+/* footer */
+#cta{
+    background-color: #192734;
+    color: #fff;
+    text-align: center;
+    padding: 7% 15%;
+}
+.cta-heading{
+    font-family: 'Montserrat Alternates', sans-serif;
+    line-height: 1.5;
+    size: 3rem;
+}
+.download-button-2{
+    margin: 5% 3% 0% 5%;
+}
+/* footer */
+#footer{
+    background-color: #192734;
+    text-align: center;
+    padding-bottom: 2%;
+}
+#footer p{
+    color:#fff;
+    text-decoration: none;
+}
+
+
+.footer-icon{
+    padding: 1%;
+}
+
+/* media queries */
+@media screen and (max-width:480px) {
+    
+#heading{
+    display: grid;
+   background-color: #192734;
+    height: 100vh;
+    width: 100%;
+    place-self: center;
+    margin: auto;
+}
+#heading img{
+    width: 300px;
+}
+#heading div{
+    color: #fff;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 1px;
+    font-size: 10px;
+}
+
+  }
