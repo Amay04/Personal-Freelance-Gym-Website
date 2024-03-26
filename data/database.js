@@ -1,9 +1,11 @@
 import mongoose from "mongoose";
 
 export const connectDB = ()=>{
-    mongoose.connect("mongodb://127.0.0.1:27017",{
-        dbname:"FitClub"
+    mongoose.connect(process.env.MONGO_URI,
+    {
+        dbname:"FitClub",
     })
     .then(()=> console.log("Database connected successfully"))
-    .catch((e)=> console.log(e))
+    .catch((e)=> console.log(e));
 }
+
