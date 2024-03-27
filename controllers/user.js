@@ -1,5 +1,6 @@
 import {User} from "../models/user.js"
 import bcrypt from "bcrypt";
+import { sendCookie } from "../utils/features.js";
 
 export const register = async(req , res , next)=>{
     try{
@@ -12,9 +13,45 @@ export const register = async(req , res , next)=>{
 
         user = await User.create({name,email, password:hashedPassword});
         console.log(user)
-        return res.render("home");
+
+    sendCookie(user , res , "Registered Successfully", 200)
 
     }catch(e){
         console.log(e)
     }
+}
+
+export const login = async(req,res,next)=>{
+   try{
+     const {email , password} = req.body;
+
+    const user = await User.findOne({email}).select("+password");
+
+    if(!user) return res.status(404).json({
+        success:false,
+        message:"User Doesnt exist"
+    });
+    
+    const isMatch = await bcrypt.compare(password, user.password);
+
+    if(!isMatch) return res.status(404).json({
+        success:false,
+        message:"Invalid Email or Password"
+    });
+
+    sendCookie(user , res , `welcome back ${user.name}`, 200)
+   }
+
+catch(e){
+    console.log(e)
+}
+}
+
+export const logout = async(req , res)=>{
+    res.status(200).cookie("token" , "" ,{
+    expires: new Date(Date.now())
+    }).json({
+        success:true,
+        user:req.user
+    })
 }
