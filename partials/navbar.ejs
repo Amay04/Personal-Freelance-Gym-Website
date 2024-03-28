@@ -1,0 +1,42 @@
+
+<nav class="navbar navbar-expand-lg navbar-dark container-fluid">
+    <a class="navbar-brand ms-4" href="#">Fit Club</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav  ms-auto mb-1 me-10">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    Plans
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Basic</a></li>
+                    <li><a class="dropdown-item" href="#">Intermediate</a></li>
+                    <li><a class="dropdown-item" href="#">Advanced</a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#cta">Contacts</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+            </li>
+          <% if (token) { %>
+            <li>
+                <button class="btn btn-outline-success ms-2 me-4" type="submit" href="/logout">Logout</button>
+            </li>
+
+          <% } else { %>
+            <button class="btn btn-outline-success ms-2 me-4" type="submit" href="/logout">Login</button>
+            <% } %>
+           
+            
+        </ul>
+    </div>
+</nav>

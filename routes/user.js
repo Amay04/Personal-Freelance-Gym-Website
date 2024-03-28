@@ -5,7 +5,7 @@ import { login, logout, register } from "../controllers/user.js";
 const router = express.Router();
 
 router.get("/register",(req,res)=>{
-    res.render("registration")
+    res.render("register")
 })
 
 router.post("/new",register)
