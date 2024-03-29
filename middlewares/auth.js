@@ -1,18 +1,17 @@
-import { Jwt } from "jsonwebtoken";
-import { User } from "../models/user";
+import { validateToken } from "../utils/checkvalidation.js";
 
-export const isAuthenticated = async (req,res,next) => {
-  const { token } = req.cookies;
-
-  if (!token)
-    return res.status(404).json({
-      success: false,
-      message: "Login First",
-    });
-
-    const decoded = jwt.verify(token , process.env.JWT_SECRET);
-    
-    req.user = await User.findById(decoded._id);
-    
-
-};
+export function checkForAuthenticationCookie(cookieName){
+    return (req, res, next)=>{
+     const tokenCookieValue = req.cookies[cookieName];
+     if(!tokenCookieValue) {
+       return  next();
+     }
+     try {
+        const userPayload = validateToken(tokenCookieValue);
+        let user = userPayload;
+     } catch (error) {
+        return next();
+     }
+     return next();
+    }
+}

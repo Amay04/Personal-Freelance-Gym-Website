@@ -1,7 +1,8 @@
 import {User} from "../models/user.js"
 import bcrypt from "bcrypt";
 import { sendCookie } from "../utils/features.js";
-import errorHandler from "../middlewares/error.js";
+import jwt from "jsonwebtoken";
+
 
 export const register = async(req , res , next)=>{
     try{
@@ -49,4 +50,13 @@ export const logout = async(req , res)=>{
     res.status(200).cookie("token" , "" ,{
     expires: new Date(Date.now())
     }).render("home")
+}
+
+export const getMyProfile = async(req,res)=>{
+    const {token} = req.cookies;
+    
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+    req.user = await User.findById(decoded._id)
+    console.log(req.user);
 }
