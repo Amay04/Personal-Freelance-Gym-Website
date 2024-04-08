@@ -31,6 +31,8 @@ export const login = async(req,res,next)=>{
     const user = await User.findOne({email}).select("+password");
 
     if(!user) return res.render("register" , {error : "Register First"})
+
+   if(user.role == "admin") return res.redirect("/admin");
     
     const isMatch = await bcrypt.compare(password, user.password);
 

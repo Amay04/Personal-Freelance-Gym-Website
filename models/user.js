@@ -15,6 +15,11 @@ const schema = new mongoose.Schema({
         required:true,
         select:false,
     },
+
+    role:{
+        type:String,
+        default:"user",
+    },
     createdAt:{
         type:Date,
         default:Date.now

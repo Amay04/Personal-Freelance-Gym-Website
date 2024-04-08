@@ -2,6 +2,7 @@ import  express, { urlencoded } from "express";
 import path from "path";
 import { config } from "dotenv";
 import userRouter from "./routes/user.js"
+import adminRouter from "./routes/admin.js"
 import cookieParser from "cookie-parser";
 import { checkForAuthenticationCookie } from "./middlewares/auth.js";
 import jwt from "jsonwebtoken"
@@ -27,6 +28,7 @@ app.set("view engine", "ejs");
 
 //Using routes
 app.use(userRouter);
+app.use(adminRouter);
 
 
 app.get("/",async(req , res)=>{
