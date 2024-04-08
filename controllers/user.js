@@ -7,9 +7,10 @@ import jwt from "jsonwebtoken";
 export const register = async(req , res , next)=>{
     try{
         const{name,email,password} =  req.body;
+      
         let user = await User.findOne({email})
 
-        if(user) return res.render("register", {error:"User Already Exist"})
+        if(user) return res.render("login", {error:"User Already Exist"});
 
         const hashedPassword = await bcrypt.hash(password , 10);
 
@@ -33,10 +34,7 @@ export const login = async(req,res,next)=>{
     
     const isMatch = await bcrypt.compare(password, user.password);
 
-    if(!isMatch) return res.status(404).json({
-        success:false,
-        message:"Invalid Email or Password"
-    });
+    if(!isMatch) return res.status(404).redirect("/register");
 
     sendCookie(user , res , `welcome back ${user.name}`, 200)
    }

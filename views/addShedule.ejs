@@ -1,0 +1,32 @@
+<%- include("../partials/adminNavbar.ejs") %>
+
+
+<main class="mt-5 pt-3">
+    <div class="fw-b fs-3 container-fluid">Add shecdule</div>
+    <div class="container m-40">
+    <form>
+        <div class="mb-3">
+          <label class="form-label">Title</label>
+          <input type="text" class="form-control" name="">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Time</label>
+            <input type="text" class="form-control" name="">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Plan</label>
+            <select class="form-select" name="">
+                <option value="1">Basic</option>
+                <option value="2">Intermediate</option>
+                <option value="3">Advanced</option>
+              </select>
+          </div>
+          
+          <div class="mb-3">
+            <label class="form-label">Add Link</label>
+            <input type="url" class="form-control" name="">
+          </div>
+        <button type="submit" class="btn btn-success">Submit</button>
+      </form>
+</div>
+</main>
