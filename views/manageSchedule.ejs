@@ -10,43 +10,28 @@
                         <thead>
                           <tr>
                             <th scope="col">#</th>
+                            <th scope="col">title</th>
                             <th scope="col">Plan Name</th>
-                            <th scope="col">Price (rs)</th>
-                            <th scope="col">Duration</th>
+                            <th scope="col">Time</th>
+                            <th scope="col">Link</th>
                             <th scope="col"></th>
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <th scope="row">1</th>
-                            <td>Basic</td>
-                            <td>1312/-</td>
-                            <td>4 weeks</td>
-                            <td>
-                                <a href="" class="btn btn-warning">Update</a>
-                                <a href="" class="btn btn-danger">Delete</a>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">2</th>
-                            <td>Intermediate</td>
-                            <td>2624/-</td>
-                            <td>8 weeks</td>
-                            <td>
-                                <a href="" class="btn btn-warning">Update</a>
-                                <a href="" class="btn btn-danger">Delete</a>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">3</th>
-                            <td>Advanced</td>
-                            <td>3498/-</td>
-                            <td>12 weeks</td>
-                            <td>
-                                <a href="" class="btn btn-warning">Update</a>
-                                <a href="" class="btn btn-danger">Delete</a>
-                            </td>
-                          </tr>
+                          <% schedule.forEach(function (allSchedule , index) { %>
+                            <tr>
+                              <th scope="col"> <%= index + 1 %> </th>
+                              <td><%= allSchedule.title %></td>
+                              <td><%= allSchedule.plan.name %></td>
+                              <td><%= allSchedule.time %></td>
+                              <td><a href="<%= allSchedule.link %>">Link</a></td>
+                              <td>
+                                  <a href="" class="btn btn-warning">Update</a>
+                                  <a href="/manageSchedule/delete/<%= allSchedule._id %>"  class="btn btn-danger">Delete </a>
+                              </td>
+                            </tr>
+                          <% }) %>
+                         
                         </tbody>
                       </table>
                     </div>

@@ -16,24 +16,14 @@
                               </tr>
                             </thead>
                             <tbody>
-                              <tr>
-                                <th scope="row">1</th>
-                                <td>Basic</td>
-                                <td>1312/-</td>
-                                <td>4 weeks</td>
-                              </tr>
-                              <tr>
-                                <th scope="row">2</th>
-                                <td>Intermediate</td>
-                                <td>2624/-</td>
-                                <td>8 weeks</td>
-                              </tr>
-                              <tr>
-                                <th scope="row">3</th>
-                                <td>Advanced</td>
-                                <td>3498/-</td>
-                                <td>12 weeks</td>
-                              </tr>
+                              <% plan.forEach(function(plans , index) { %>
+                                <tr>
+                                    <th scope="row"> <%= index+1 %></th>
+                                    <td><%= plans.name %></td>
+                                    <td><%= plans.amount %></td>
+                                    <td><%= plans.description2 %></td>
+                                </tr>
+                                <% }) %>
                             </tbody>
                           </table>
                         </div>

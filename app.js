@@ -6,7 +6,9 @@ import adminRouter from "./routes/admin.js"
 import cookieParser from "cookie-parser";
 import { checkForAuthenticationCookie } from "./middlewares/auth.js";
 import jwt from "jsonwebtoken"
-import {User} from "./models/user.js"
+import {User} from "./models/user.js";
+import {Plan} from "./models/plans.js";
+
 
 
 
@@ -34,14 +36,15 @@ app.use(adminRouter);
 app.get("/",async(req , res)=>{
   const { token } = req.cookies;
 
-  if (!token) return res.render("home");
+  let plans = await Plan.find();
+
+  if (!token) return res.render("home",{plans});
    
     const decoded = jwt.verify(token , process.env.JWT_SECRET);
   
    let user = await User.findById(decoded._id);
    
-    return res.render("home",{user});
-
+    return res.render("home",{user , plans });
   });
 
 
