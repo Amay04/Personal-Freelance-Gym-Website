@@ -1,4 +1,6 @@
-import {User} from "../models/user.js"
+import {User} from "../models/user.js";
+import {Plan} from "../models/plans.js";
+
 import bcrypt from "bcrypt";
 import { sendCookie } from "../utils/features.js";
 import jwt from "jsonwebtoken";
@@ -47,9 +49,10 @@ catch(e){
 }
 
 export const logout = async(req , res)=>{
+
     res.status(200).cookie("token" , "" ,{
     expires: new Date(Date.now())
-    }).render("home")
+    }).redirect("/");
 }
 
 export const getMyProfile = async(req,res)=>{

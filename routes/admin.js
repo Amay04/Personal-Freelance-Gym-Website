@@ -16,10 +16,9 @@ router.get("/addplans", (req,res)=>{
 router.post("/addplans", addplan);
 
 
-
 router.get("/showplans", showplan);
 
-// Manage Plans
+// Manage Schedule
 
 router.get("/addschedule",addSchedule);
 

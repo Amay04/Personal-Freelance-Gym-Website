@@ -24,7 +24,7 @@ export const addplan = async (req, res) => {
 
 export const showplan = async (req, res) => {
   let plan = await Plan.find();
-  res.render("showplans", { plan });
+  res.render("showplans", {plan});
 };
 
 // Add schedule
@@ -44,6 +44,7 @@ export const addSchedule = async (req, res) => {
 
 export const createSchedule = async (req, res) => {
   try {
+    
    const {title, time, plan , link} = req.body;
 
    const Plans = await Plan.findOne({name:plan});
@@ -90,7 +91,6 @@ export const deleteSchedule = async (req , res)=>{
   try {
  
     await Schedule.deleteOne({_id: req.params.id});
-
   res.redirect("/manageSchedule")
   } catch (e) {
     console.log(e);
