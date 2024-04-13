@@ -22,6 +22,9 @@
                                     <td><%= plans.name %></td>
                                     <td><%= plans.amount %></td>
                                     <td><%= plans.description2 %></td>
+                                    <td>
+                                      <a href="/managePlans/delete/<%= plans._id %>"  class="btn btn-danger">Delete </a>
+                                  </td>
                                 </tr>
                                 <% }) %>
                             </tbody>

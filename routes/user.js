@@ -1,5 +1,5 @@
 import express from "express";
-import { getMyProfile, login, logout, register } from "../controllers/user.js";
+import { getMyProfile, login, logout, myschedule, register } from "../controllers/user.js";
 
 
 const router = express.Router();
@@ -19,5 +19,7 @@ router.post("/login", login)
 router.get("/logout", logout)
 
 router.get("/me",getMyProfile)
+
+router.get("/myschedule" , myschedule)
 
 export default router;

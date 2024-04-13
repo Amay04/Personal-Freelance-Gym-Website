@@ -1,5 +1,5 @@
 import { Plan } from "../models/plans.js";
-import {Schedule} from "../models/schedule.js";
+import { Schedule } from "../models/schedule.js";
 
 export const addplan = async (req, res) => {
   try {
@@ -24,7 +24,23 @@ export const addplan = async (req, res) => {
 
 export const showplan = async (req, res) => {
   let plan = await Plan.find();
-  res.render("showplans", {plan});
+  res.render("showplans", { plan });
+};
+
+// delete plan
+
+export const deletePlan = async (req, res) => {
+  try {
+
+    await Plan.deleteOne({_id: req.params.id});
+    res.redirect("/showplans")
+
+  } catch (e) {
+    res.status(404).json({
+      success: false,
+      message: "something went wrong",
+    });
+  }
 };
 
 // Add schedule
@@ -41,23 +57,20 @@ export const addSchedule = async (req, res) => {
   }
 };
 
-
 export const createSchedule = async (req, res) => {
   try {
-    
-   const {title, time, plan , link} = req.body;
+    const { title, time, plan, link } = req.body;
 
-   const Plans = await Plan.findOne({name:plan});
-   
-   await Schedule.create({
-    title,
-    time,
-    plan:Plans._id,
-    link
-   });
+    const Plans = await Plan.findOne({ name: plan });
 
-   res.redirect("/addschedule");
+    await Schedule.create({
+      title,
+      time,
+      plan: Plans._id,
+      link,
+    });
 
+    res.redirect("/addschedule");
   } catch (e) {
     console.log(e);
     res.status(404).json({
@@ -68,14 +81,11 @@ export const createSchedule = async (req, res) => {
 };
 
 
-
 export const displaySchedule = async (req, res) => {
-
   try {
-  const schedule = await Schedule.find().populate("plan");
+    const schedule = await Schedule.find().populate("plan");
 
-   res.render("manageSchedule",{schedule});
-
+    res.render("manageSchedule", { schedule });
   } catch (e) {
     console.log(e);
     res.status(404).json({
@@ -87,11 +97,10 @@ export const displaySchedule = async (req, res) => {
 
 // delete schedule
 
-export const deleteSchedule = async (req , res)=>{
+export const deleteSchedule = async (req, res) => {
   try {
- 
-    await Schedule.deleteOne({_id: req.params.id});
-  res.redirect("/manageSchedule")
+    await Schedule.deleteOne({ _id: req.params.id });
+    res.redirect("/manageSchedule");
   } catch (e) {
     console.log(e);
     res.status(404).json({
@@ -99,4 +108,4 @@ export const deleteSchedule = async (req , res)=>{
       message: "Something went wrong",
     });
   }
-} 
+};

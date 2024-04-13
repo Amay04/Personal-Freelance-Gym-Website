@@ -4,107 +4,116 @@
 
 <%- include("../partials/head.ejs") %>
 
-<body>
+  <body>
 
     <!-- navbar Start -->
     <%- include("../partials/navbar.ejs") %>
-     
-    <!-- navbar ends -->
 
-    <div id="heading" class="container-fluid">
+      <!-- navbar ends -->
+
+      <div id="heading" class="container-fluid">
         <div class="row">
-            <div class="col-lg-6 col-md-12">
-                <img src="Images/Amay.png" alt="Trainer img">
-            </div>
-            <div class="col-lg-6 col-md-12">
-                <h1>amay naik</h1>
-                <p>Fitness trainer</p>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur voluptas laboriosam sapiente.
-                    Quasi
-                    autem dolorem nobis quis corporis neque animi, voluptate id, molestias sed doloremque quos harum
-                    doloribus ab voluptas iure culpa natus aliquid eveniet deserunt, cum ducimus mollitia earum. Iste
-                    esse
-                    rerum eveniet, nobis ea assumenda ad sed distinctio!</p>
-                <button type="submit">Reach Out</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- achievement Section -->
-
-    <section id="achievement">
-        <div>
-            <h1>Certification</h1>
-            <i class="fa-solid fa-medal" style="color: #ffd700;"></i>
-            <h3>ASCA Level 1 Strength and Conditioning Coach</h3>
-        </div>
-    </section>
-
-
-    <!-- features -->
-    <section id="features">
-        <div class="row">
-            <div class="features-box col-lg-4">
-                <i class="fa-solid fa-circle-check"></i>
-                <h3>Easy to use</h3>
-                <p>So easy to use, even your dog could do it.</p>
-            </div>
-            <div class="features-box col-lg-4">
-                <i class="fa-solid fa-bullseye"></i>
-                <h3>Boost your Energy and Mood</h3>
-                <p>A positive feeling in your brain, and the sense of acomplishment you get after workout.</p>
-            </div>
-            <div class="features-box col-lg-4">
-                <i class="fa-solid fa-dumbbell"></i>
-                <h3>De-stress and Relax</h3>
-                <p>Even a short workout will make you feel better.</p>
-            </div>
-        </div>
-    </section>
-    
-  <!-- Pricing -->
-
-  <section id="pricing">
-
-    <h2>A Plan For Every Gym Rat</h2>
-    <p>Simple and affordable price plans for you</p>
-
-    <div class="row">
-      <% plans.forEach(plan => { %>
-        <div class="pricing-column col-lg-4 col-md-6">
-          <div class="card">
-            <div class="card-header">
-              <h3><%= plan.name %></h3>
-            </div>
-            <div class="card-body">
-              <h2>Rs <%= plan.amount %> / Mo</h2>
-              <p><%= plan.description %></p>
-              <p><%= plan.description1 %></p>
-              <p><%= plan.description2 %></p>
-              <button type="button" class="btn btn-lg col-12 btn-outline-primary">Sign Up</button>
-            </div>
+          <div class="col-lg-6 col-md-12">
+            <img src="Images/Amay.png" alt="Trainer img">
+          </div>
+          <div class="col-lg-6 col-md-12">
+            <h1>amay naik</h1>
+            <p>Fitness trainer</p>
+            <p>As a dedicated gym coach, I am passionate about helping individuals achieve their fitness goals.
+              Transitioning to an online business allows me to reach a broader audience and provide personalized
+              training programs, nutritional guidance, and ongoing support. Through virtual sessions and tailored plans,
+              I aim to empower clients to thrive in their health journey.</p>
+            <button type="submit" >Reach Out</button>
           </div>
         </div>
-      <% }) %>
+      </div>
+
+      <!-- achievement Section -->
+
+      <section id="achievement">
+        <div>
+          <h1>Certification</h1>
+          <i class="fa-solid fa-medal" style="color: #ffd700;"></i>
+          <h3>ASCA Level 1 Strength and Conditioning Coach</h3>
+        </div>
       </section>
-  <section id="cta">
-    <h1 class="cta-heading">"Have questions, feedback, or just want to say hello? We'd love to hear from you!</h1>
-    <button type="button" class="btn btn-outline-light btn-lg download-button-2"><i class="fa-solid fa-phone-volume"></i> Contact Now</button>
 
-  </section>
 
-  <!-- Footer -->
+      <!-- features -->
+      <section id="features">
+        <div class="row">
+          <div class="features-box col-lg-4">
+            <i class="fa-solid fa-circle-check"></i>
+            <h3>Easy to use</h3>
+            <p>So easy to use, even your dog could do it.</p>
+          </div>
+          <div class="features-box col-lg-4">
+            <i class="fa-solid fa-bullseye"></i>
+            <h3>Boost your Energy and Mood</h3>
+            <p>A positive feeling in your brain, and the sense of acomplishment you get after workout.</p>
+          </div>
+          <div class="features-box col-lg-4">
+            <i class="fa-solid fa-dumbbell"></i>
+            <h3>De-stress and Relax</h3>
+            <p>Even a short workout will make you feel better.</p>
+          </div>
+        </div>
+      </section>
 
-  <footer id="footer">
-    <i class="fa-brands fa-twitter footer-icon" style="color: #ffffff;"></i>
-    <i class="fa-brands fa-instagram footer-icon" style="color: #ffffff;"></i>
-    <i class="fa-brands fa-facebook-f footer-icon" style="color: #ffffff;"></i>
-    <i class="fa-brands fa-linkedin footer-icon" style="color: #ffffff;"></i>
-    <p>© Copyright 2024 FitClub</p>
-    <p>Developed by <a href="https://www.instagram.com/__sharan__93/" style="text-decoration: none; color:#fff">Sharan </a>&<a href="https://www.instagram.com/amaynaik_04/" style="text-decoration: none; color:#fff"> Amay</a></p>
+      <!-- Pricing -->
 
-  </footer>
-   <%- include("../partials/script") %>
-</body>
+      <section id="pricing">
+
+        <h2>A Plan For Every Gym Rat</h2>
+        <p>Simple and affordable price plans for you</p>
+
+        <div class="row">
+          <% plans.forEach(plan=> { %>
+            <div class="pricing-column col-lg-4 col-md-6">
+              <div class="card">
+                <div class="card-header">
+                  <h3>
+                    <%= plan.name %>
+                  </h3>
+                </div>
+                <div class="card-body">
+                  <h2>Rs <%= plan.amount %> / Mo</h2>
+                  <p>
+                    <%= plan.description %>
+                  </p>
+                  <p>
+                    <%= plan.description1 %>
+                  </p>
+                  <p>
+                    <%= plan.description2 %>
+                  </p>
+                  <button type="button" class="btn btn-lg col-12 btn-outline-primary">Sign Up</button>
+                </div>
+              </div>
+            </div>
+            <% }) %>
+      </section>
+      <section id="cta">
+        <h1 class="cta-heading">"Have questions, feedback, or just want to say hello? We'd love to hear from you!</h1>
+        <button type="button" class="btn btn-outline-light btn-lg download-button-2"><i
+            class="fa-solid fa-phone-volume"></i> Contact Now</button>
+
+      </section>
+
+      <!-- Footer -->
+
+      <footer id="footer">
+        <i class="fa-brands fa-twitter footer-icon" style="color: #ffffff;"></i>
+        <i class="fa-brands fa-instagram footer-icon" style="color: #ffffff;"></i>
+        <i class="fa-brands fa-facebook-f footer-icon" style="color: #ffffff;"></i>
+        <i class="fa-brands fa-linkedin footer-icon" style="color: #ffffff;"></i>
+        <p>© Copyright 2024 FitClub</p>
+        <p>Developed by <a href="https://www.instagram.com/__sharan__93/"
+            style="text-decoration: none; color:#fff">Sharan </a>&<a href="https://www.instagram.com/amaynaik_04/"
+            style="text-decoration: none; color:#fff"> Amay</a></p>
+
+      </footer>
+      <%- include("../partials/script") %>
+  </body>
 
 </html>

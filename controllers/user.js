@@ -4,6 +4,7 @@ import {Plan} from "../models/plans.js";
 import bcrypt from "bcrypt";
 import { sendCookie } from "../utils/features.js";
 import jwt from "jsonwebtoken";
+import { Schedule } from "../models/schedule.js";
 
 
 export const register = async(req , res , next)=>{
@@ -62,4 +63,23 @@ export const getMyProfile = async(req,res)=>{
 
     req.user = await User.findById(decoded._id)
     console.log(req.user);
+}
+
+
+
+
+
+
+export const myschedule = async(req,res)=>{
+    try {
+        const schedule = await Schedule.find().populate("plan");
+    
+        res.render("Myschedule", { schedule });
+      } catch (e) {
+        console.log(e);
+        res.status(404).json({
+          success: false,
+          message: "Something went wrong",
+        });
+      }
 }

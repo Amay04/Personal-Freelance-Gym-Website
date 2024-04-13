@@ -1,6 +1,6 @@
 import express from "express";
 import { User } from "../models/user.js";
-import { addSchedule, addplan, createSchedule, deleteSchedule, displaySchedule, showplan } from "../controllers/admin.js";
+import { addSchedule, addplan, createSchedule, deletePlan, deleteSchedule, displaySchedule, showplan } from "../controllers/admin.js";
 
 const router = express.Router();
 
@@ -17,6 +17,8 @@ router.post("/addplans", addplan);
 
 
 router.get("/showplans", showplan);
+
+router.get("/managePlans/delete/:id",deletePlan);
 
 // Manage Schedule
 
