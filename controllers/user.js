@@ -83,3 +83,18 @@ export const myschedule = async(req,res)=>{
         });
       }
 }
+
+
+export const contactus = async(req ,res)=>{
+  try{
+    res.render("contact")
+
+  }catch(e){
+    console.log(e);
+    res.status(404).json({
+      success: false,
+      message: "Something went wrong",
+    });
+
+  }
+}
