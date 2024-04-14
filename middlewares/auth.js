@@ -1,17 +1,14 @@
-import { validateToken } from "../utils/checkvalidation.js";
+import jwt from "jsonwebtoken";
+import { User } from "../models/user.js";
 
-export function checkForAuthenticationCookie(cookieName){
-    return (req, res, next)=>{
-     const tokenCookieValue = req.cookies[cookieName];
-     if(!tokenCookieValue) {
-       return  next();
-     }
-     try {
-        const userPayload = validateToken(tokenCookieValue);
-        let user = userPayload;
-     } catch (error) {
-        return next();
-     }
-     return next();
-    }
+export const isAuth = async (req,res, next)=>{
+    console.log("whelo")
+   const {token} = req.cookies;
+
+   if(!token) return next();
+
+   const decoded = jwt.verify(token,process.env.JWT_SECRET);
+    req.user = await User.findById(decoded._id);
+    next()
+
 }
