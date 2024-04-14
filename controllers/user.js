@@ -1,5 +1,4 @@
 import {User} from "../models/user.js";
-import {Plan} from "../models/plans.js";
 
 import bcrypt from "bcrypt";
 import { sendCookie } from "../utils/features.js";
@@ -64,11 +63,6 @@ export const getMyProfile = async(req,res)=>{
     req.user = await User.findById(decoded._id)
     console.log(req.user);
 }
-
-
-
-
-
 
 export const myschedule = async(req,res)=>{
     try {
