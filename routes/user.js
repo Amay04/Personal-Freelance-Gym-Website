@@ -1,5 +1,5 @@
 import express from "express";
-import { contactus, getMyProfile, login, logout, myschedule, register } from "../controllers/user.js";
+import { contactus, login, logout, myschedule, register } from "../controllers/user.js";
 
 
 const router = express.Router();
@@ -17,8 +17,6 @@ router.get("/login", (req , res)=>{
 router.post("/login", login)
 
 router.get("/logout", logout)
-
-router.get("/me",getMyProfile)
 
 router.get("/myschedule" , myschedule)
 

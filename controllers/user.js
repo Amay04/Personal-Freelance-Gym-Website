@@ -38,7 +38,7 @@ export const login = async(req,res,next)=>{
     
     const isMatch = await bcrypt.compare(password, user.password);
 
-    if(!isMatch) return res.status(404).redirect("/register");
+    if(!isMatch) return res.status(404).render("login" , {error : "Incorrect Password"})
 
     sendCookie(user , res , `welcome back ${user.name}`, 200)
    }
@@ -53,15 +53,6 @@ export const logout = async(req , res)=>{
     res.status(200).cookie("token" , "" ,{
     expires: new Date(Date.now())
     }).redirect("/");
-}
-
-export const getMyProfile = async(req,res)=>{
-    const {token} = req.cookies;
-    
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
-    req.user = await User.findById(decoded._id)
-    console.log(req.user);
 }
 
 export const myschedule = async(req,res)=>{
