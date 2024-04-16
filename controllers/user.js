@@ -4,6 +4,7 @@ import bcrypt from "bcrypt";
 import { sendCookie } from "../utils/features.js";
 import jwt from "jsonwebtoken";
 import { Schedule } from "../models/schedule.js";
+import { Query } from "../models/queries.js";
 
 
 export const register = async(req , res , next)=>{
@@ -33,12 +34,12 @@ export const login = async(req,res,next)=>{
     const user = await User.findOne({email}).select("+password");
 
     if(!user) return res.render("register" , {error : "Register First"})
-
-   if(user.role == "admin") return res.redirect("/admin");
     
     const isMatch = await bcrypt.compare(password, user.password);
 
     if(!isMatch) return res.status(404).render("login" , {error : "Incorrect Password"})
+    
+    if(user.role == "admin") return res.redirect("/admin");
 
     sendCookie(user , res , `welcome back ${user.name}`, 200)
    }
@@ -83,3 +84,24 @@ export const contactus = async(req ,res)=>{
 
   }
 }
+
+export const sendquery = async (req, res) => {
+  try {
+    const { name, email, number, message } = req.body;
+
+    await Query.create({
+      name,
+      email,
+      number,
+      message,
+    });
+
+    res.redirect("/");
+  } catch (e) {
+    console.log(e)
+    res.status(404).json({
+      success: false,
+      message: "Something went wrong",
+    });
+  }
+};
