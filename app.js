@@ -4,8 +4,6 @@ import { config } from "dotenv";
 import userRouter from "./routes/user.js"
 import adminRouter from "./routes/admin.js"
 import cookieParser from "cookie-parser";
-import jwt from "jsonwebtoken";
-import {User} from "./models/user.js";
 import {Plan} from "./models/plans.js";
 import { isAuth } from "./middlewares/auth.js";
 
@@ -34,7 +32,6 @@ app.get("/",async(req , res)=>{
   
   
   let plans = await Plan.find();
-   console.log(req.user)
     return res.render("home",{user:req.user , plans });
   });
 
