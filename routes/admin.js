@@ -1,6 +1,6 @@
 import express from "express";
 import { User } from "../models/user.js";
-import { addSchedule, addplan, createSchedule, deletePlan, deleteSchedule, displaySchedule, showplan } from "../controllers/admin.js";
+import { addSchedule, addplan, createSchedule, deletePlan, deleteSchedule, displaySchedule, getquery, showplan } from "../controllers/admin.js";
 
 const router = express.Router();
 
@@ -33,5 +33,7 @@ router.get("/manageuser", (req,res)=>{
 router.get("/manageSchedule",displaySchedule );
 
 router.get("/manageSchedule/delete/:id", deleteSchedule);
+
+router.get("/getquery" , getquery)
 
 export default router;

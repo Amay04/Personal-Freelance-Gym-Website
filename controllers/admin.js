@@ -1,4 +1,5 @@
 import { Plan } from "../models/plans.js";
+import { Query } from "../models/queries.js";
 import { Schedule } from "../models/schedule.js";
 
 export const addplan = async (req, res) => {
@@ -109,3 +110,16 @@ export const deleteSchedule = async (req, res) => {
     });
   }
 };
+
+export const getquery = async(req,res) =>{
+  try{
+  const query = await Query.find()
+  res.render("query", {query})
+
+  }catch(e){
+    res.status(404).json({
+      success: false,
+      message: "Something went wrong",
+    });
+  }
+}

@@ -14,6 +14,7 @@
   </head>
   <body>
    
+    <form action="/contactus" method="post">
 
     <div class="form">
 
@@ -30,17 +31,19 @@
       </div>
       <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label">Contact Number</label>
-        <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="number"name=number>
+        <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="number" name="number">
       </div>
       <div class="mb-3">
         <label for="exampleFormControlTextarea1" class="form-label">Message</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Have questions, feedback, or just want to say hello? We'd love to hear from you!" name="query"></textarea>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Have questions, feedback, or just want to say hello? We'd love to hear from you!" name="message"></textarea>
       </div>
 
       <button type="submit" class="btn" >Submit</button>
     
 
     </div>
+
+  </form>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"

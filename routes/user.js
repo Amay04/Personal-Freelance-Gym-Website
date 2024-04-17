@@ -1,5 +1,6 @@
 import express from "express";
-import { contactus, login, logout, myschedule, register } from "../controllers/user.js";
+import { contactus, login, logout, myschedule, register, sendquery } from "../controllers/user.js";
+import { sendCookie } from "../utils/features.js";
 
 
 const router = express.Router();
@@ -21,5 +22,7 @@ router.get("/logout", logout)
 router.get("/myschedule" , myschedule)
 
 router.get("/contactus" , contactus)
+
+router.post("/contactus" , sendquery )
 
 export default router;
