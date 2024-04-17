@@ -1,44 +1,36 @@
 <%- include("../partials/adminNavbar.ejs") %>
-<!-- Success alert -->
-<% if (locals.success) { %>
-  <div class="alert alert-secondary" role="alert">
-      <%= locals.success %>
-    </div>
-<% } %>
-<!-- error alert -->
-<% if (locals.error) { %>
-  <div class="alert alert-danger" role="alert">
-     <%= locals.error %>
-    </div>  
-     <% } %>
-
     <main class="mt-5 pt-3">
-                <div class="fw-b fs-3 container-fluid">All active Plans</div>
-                <div class="container m-40">
-                <form action="/addplans" method="post">
-                    <div class="mb-3">
-                      <label class="form-label">Plan Name</label>
-                      <input type="text" class="form-control" name="name">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Amount</label>
-                        <input type="text" class="form-control" name="amount">
-                      </div>
-                      <div class="mb-3">
-                        <label class="form-label">Description</label>
-                        <input type="text" class="form-control" name="description">
-                      </div>
-                      <div class="mb-3">
-                        <label class="form-label">Description</label>
-                        <input type="text" class="form-control" name="description1">
-                      </div>
-                      <div class="mb-3">
-                        <label class="form-label">Description</label>
-                        <input type="text" class="form-control" name="description2">
-                      </div>
-                    <button type="submit" class="btn btn-success">Submit</button>
-                  </form>
-            </div>
+      <div class="fw-b fs-3 container-fluid">All active Plans</div>
+      <div class="container m-40">
+        <form action="/addplans" method="post" enctype="multipart/form-data">
+          <div class="mb-3">
+            <label class="form-label">Plan Name</label>
+            <input type="text" class="form-control" name="name">
+          </div>
+
+          <div class="input-group mb-3">
+            <input type="file" class="form-control" id="inputGroupFile02" name="coverimage">
+            <label class="input-group-text" for="inputGroupFile02">Upload</label>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Amount</label>
+            <input type="text" class="form-control" name="amount">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Description</label>
+            <input type="text" class="form-control" name="description">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Description</label>
+            <input type="text" class="form-control" name="description1">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Description</label>
+            <input type="text" class="form-control" name="description2">
+          </div>
+          <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+      </div>
     </main>
 
     <%- include("../partials/script") %>

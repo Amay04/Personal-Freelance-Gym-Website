@@ -34,11 +34,13 @@ export const login = async(req,res,next)=>{
 
     if(!user) return res.render("register" , {error : "Register First"})
 
-   if(user.role == "admin") return res.redirect("/admin");
     
     const isMatch = await bcrypt.compare(password, user.password);
 
     if(!isMatch) return res.status(404).render("login" , {error : "Incorrect Password"})
+
+    if(user.role == "admin") return res.redirect("/admin");
+
 
     sendCookie(user , res , `welcome back ${user.name}`, 200)
    }

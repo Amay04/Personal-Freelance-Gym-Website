@@ -1,48 +1,44 @@
 <%- include("../partials/adminNavbar.ejs") %>
-    <main class="mt-5 pt-3">
-        <div class="container-fluid">
+  <main class="mt-5 pt-3">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12 fw-bold fs-3">Manage User</div>
+        <div class="col-md-12">
+          <div class="card">
             <div class="row">
-                <div class="col-md-12 fw-bold fs-3">Manage User</div>
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="card">
-                                    <div class="card-header">Data Table</div>
-                                    <table class="table">
-                                        <thead>
-                                          <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">Name</th>
-                                            <th scope="col">Email</th>
-                                            <th scope="col">Plan</th>
-                                          </tr>
-                                        </thead>
-                                        <tbody>
-                                          <tr>
-                                            <th scope="row">1</th>
-                                            <td>Amay Naik</td>
-                                            <td>Ameyanaik@gmail.com</td>
-                                            <td>None</td>
-                                          </tr>
-                                          <tr>
-                                            <th scope="row">2</th>
-                                            <td>Akhil</td>
-                                            <td>Akhildumbre@gmail.com</td>
-                                            <td>Advanced</td>
-                                          </tr>
-                                          <tr>
-                                            <th scope="row">3</th>
-                                            <td>Johnny Depp</td>
-                                            <td>john@gmail.com</td>
-                                            <td>Basic</td>
-                                          </tr>
-                                        </tbody>
-                                      </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    </main>
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-header">Data Table</div>
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Plan</th>
+                        <th scope="col"></th>
 
-    <%- include("../partials/script") %>
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                      <% users.forEach(function (user , index) { %>
+                        <tr>
+                          <th scope="row"><%= index + 1 %></th>
+                          <td><%= user.name %> </td>
+                          <td><%= user.email %> </td>
+                          <td>None</td>
+                          <td>
+                            <a href="/manageUser/delete/<%= user._id %>" class="btn btn-danger">Delete</a>
+                          </td>
+                        </tr>
+                      <% }) %>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+  </main>
+
+  <%- include("../partials/script") %>

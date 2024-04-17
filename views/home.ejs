@@ -11,11 +11,14 @@
 
       <!-- navbar ends -->
       <section class="main-img">
-           
-        <div class="maintext"><h3>Don't count the days, make the days count. Transform your fitness journey with personalized guidance. Our personal trainer plans are not just about workouts, they're about commitment, progress, and achieving your best self."
 
-           </h3>
-</div>
+        <div class="maintext">
+          <h3>Don't count the days, make the days count. Transform your fitness journey with personalized guidance. Our
+            personal trainer plans are not just about workouts, they're about commitment, progress, and achieving your
+            best self."
+
+          </h3>
+        </div>
       </section>
       <div id="heading" class="container-fluid">
         <div class="row">
@@ -29,7 +32,7 @@
               Transitioning to an online business allows me to reach a broader audience and provide personalized
               training programs, nutritional guidance, and ongoing support. Through virtual sessions and tailored plans,
               I aim to empower clients to thrive in their health journey.</p>
-            <button type="submit" >Reach Out</button>
+            <button type="submit">Reach Out</button>
           </div>
         </div>
       </div>
@@ -72,28 +75,27 @@
 
         <h2>A Plan For Every Gym Rat</h2>
         <p>Simple and affordable price plans for you</p>
-
         <div class="row">
           <% plans.forEach(plan=> { %>
-            <div class="pricing-column col-lg-4 col-md-6">
-              <div class="card">
-                <div class="card-header">
-                  <h3>
-                    <%= plan.name %>
-                  </h3>
-                </div>
+            <div class="pricing-column col-lg-4 col-md-12">
+
+              <div class="card m-8" style="width: 20rem;">
+                <img src="<%= plan.image %>" class="card-img-top" alt="...">
                 <div class="card-body">
-                  <h2>Rs <%= plan.amount %> / Mo</h2>
-                  <p>
+                  <h5 class="card-title">
+                    <%= plan.name %>
+                  </h5>
+                  <p class="card-text"> Rs <%= plan.amount %> /- </p>
+                  <p class="card-text">
                     <%= plan.description %>
                   </p>
-                  <p>
+                  <p class="card-text">
                     <%= plan.description1 %>
                   </p>
-                  <p>
+                  <p class="card-text">
                     <%= plan.description2 %>
                   </p>
-                  <button type="button" class="btn btn-lg col-12 btn-outline-primary">Sign Up</button>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
               </div>
             </div>
@@ -102,7 +104,7 @@
       <section id="cta">
         <h1 class="cta-heading">"Have questions, feedback, or just want to say hello? We'd love to hear from you!</h1>
         <a href="/contactus"><button type="button" class="btn btn-outline-light btn-lg download-button-2"><i
-            class="fa-solid fa-phone-volume"></i> Contact Now</button></a>
+              class="fa-solid fa-phone-volume"></i> Contact Now</button></a>
 
       </section>
 

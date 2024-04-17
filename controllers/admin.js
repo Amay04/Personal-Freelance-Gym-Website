@@ -1,7 +1,18 @@
 import { Plan } from "../models/plans.js";
 import { Query } from "../models/queries.js";
 import { Schedule } from "../models/schedule.js";
+import { User } from "../models/user.js";
 
+
+// Manage User
+
+export const deleteUser = async (req, res) =>{
+await User.deleteOne({_id: req.params.id});
+res.redirect("/manageUser");
+}
+
+
+//Manage Plan
 export const addplan = async (req, res) => {
   try {
     const { name, amount, description, description1, description2 } = req.body;
@@ -9,13 +20,14 @@ export const addplan = async (req, res) => {
     await Plan.create({
       name: name,
       amount: amount,
+      image:`/uploads/${req.file.filename}`,
       description: description,
       description1: description1,
       description2: description2,
     });
-
     res.render("addPlans");
   } catch (e) {
+    console.log(e);
     res.status(404).json({
       success: false,
       message: "Something went wrong",
@@ -33,6 +45,7 @@ export const showplan = async (req, res) => {
 export const deletePlan = async (req, res) => {
   try {
 
+    await Schedule.deleteMany({plan: req.params.id});
     await Plan.deleteOne({_id: req.params.id});
     res.redirect("/showplans")
 
@@ -110,13 +123,27 @@ export const deleteSchedule = async (req, res) => {
     });
   }
 };
-
+// query
 export const getquery = async(req,res) =>{
   try{
   const query = await Query.find()
   res.render("query", {query})
 
   }catch(e){
+    res.status(404).json({
+      success: false,
+      message: "Something went wrong",
+    });
+  }
+}
+
+export const deleteQuery = async (req,res) =>{
+  try{
+  await Query.deleteOne({_id:req.params.id});
+  res.redirect("/getquery")
+  
+  }
+  catch(e){
     res.status(404).json({
       success: false,
       message: "Something went wrong",
