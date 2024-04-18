@@ -1,0 +1,29 @@
+<%- include("../partials/adminNavbar.ejs") %>
+
+
+<main class="mt-5 pt-3">
+    <div class="fw-b fs-3 container-fluid">Add Diet</div>
+    <div class="container m-40">
+    <form action="/addDiet" method="post">
+        <div class="mb-3">
+          <label class="form-label">Meal 1</label>
+          <input type="text" class="form-control" name="meal1">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Meal 2</label>
+            <input type="text" class="form-control" name="meal2">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Meal 3</label>
+            <input type="text" class="form-control" name="meal3">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Meal 4</label>
+            <input type="text" class="form-control" name="meal4">
+          </div>
+        <button type="submit" class="btn btn-success">Submit</button>
+      </form>
+</div>
+</main>
+
+<%- include("../partials/script") %>

@@ -17,10 +17,15 @@ const scheduleSchema = new mongoose.Schema({
         type:String,
         required: true
     },
+    date:{
+      type:Date,
+      required:true,
+    },
     createdAt:{
         type:Date,
         default:Date.now
     }
+    
 });
 
 export const Schedule = mongoose.model("Schedule",scheduleSchema);

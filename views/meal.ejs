@@ -59,23 +59,29 @@
                                 </tr>
                             </thead>
                             <tbody>
+
+                                <% diet.forEach(diets => { %>
+                                 
+                                
                                 <tr>
                                     <td>Meal 1</td>
-                                    <td><!-- Your meal 1 data here --></td>
+                                    <td><%= diets.meal1 %></td>
                                 </tr>
                                 <tr>
                                     <td>Meal 2</td>
-                                    <td><!-- Your meal 2 data here --></td>
+                                    <td><%= diets.meal2 %></td>
                                 </tr>
                                 <tr>
                                     <td>Meal 3</td>
-                                    <td><!-- Your meal 3 data here --></td>
+                                    <td><%= diets.meal3 %></td>
                                 </tr>
                                 <tr>
                                     <td>Meal 4</td>
-                                    <td><!-- Your meal 4 data here --></td>
+                                    <td><%= diets.meal4 %></td>
                                 </tr>
                                 <!-- Add more rows if needed with your diet meal data -->
+
+                                <% }) %>
                             </tbody>
                         </table>
                     </div>

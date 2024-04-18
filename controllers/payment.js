@@ -95,9 +95,9 @@ export const paymentInitiation = async (req, res) => {
           if (response.data.code === "PAYMENT_SUCCESS") {
             updateUserSubscription( userId, planId);
             //redirect user to frontend success page
-            res.send("<h1>Payment Sucessfull</h1>");
+            res.render("success")
           } else if (response.data.code === "PAYMENT_ERROR") {
-            //redirect to failure page
+            res.render("failure")
           } else {
             //pending page
           }

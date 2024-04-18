@@ -1,3 +1,4 @@
+import { Diet } from "../models/diet.js";
 import { Plan } from "../models/plans.js";
 import { Query } from "../models/queries.js";
 import { Schedule } from "../models/schedule.js";
@@ -145,6 +146,38 @@ export const deleteQuery = async (req,res) =>{
   
   }
   catch(e){
+    res.status(404).json({
+      success: false,
+      message: "Something went wrong",
+    });
+  }
+}
+
+export const viewDiet = async(req,res) =>{
+  try{
+res.render("addDiet");
+  }catch(e){
+    res.status(404).json({
+      success: false,
+      message: "Something went wrong",
+    });
+  }
+}
+
+export const sendDiet = async(req,res) =>{
+  try{
+    const { meal1, meal2, meal3, meal4 } = req.body;
+
+    await Diet.create({
+      meal1,
+      meal2,
+      meal3,
+      meal4,
+    });
+
+    res.redirect("/addDiet");
+
+  }catch(e){
     res.status(404).json({
       success: false,
       message: "Something went wrong",

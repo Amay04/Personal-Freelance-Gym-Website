@@ -66,15 +66,20 @@
                                 </tr>
                             </thead>
                             <tbody>
+
+                                <% schedule.forEach( function(schedules , index) { %>
+                                 
+                                
                                 <tr>
-                                    <th scope="row">1</th>
-                                    <td>amay gym jaa</td>
-                                    <td>advance</td>
-                                    <td>10:00 AM</td>
-                                    <td><a href="#">Join</a></td>
-                                    <td>17-04-2024</td>
+                                    <th scope="row"><%=index+1 %></th>
+                                    <td><%= schedules.title %></td>
+                                    <td><%=  schedules.plan %></td>
+                                    <td><%=  schedules.time %></td>
+                                    <td><a href="<%=  schedules.link %>">Join</a></td>
+                                    <td><%=  schedules.time %></td>
                                 </tr>
                                 <!-- Add more rows with schedule data -->
+                                <% }) %>
                             </tbody>
                         </table>
                     </div>

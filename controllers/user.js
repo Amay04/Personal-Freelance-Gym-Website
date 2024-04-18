@@ -4,6 +4,7 @@ import bcrypt from "bcrypt";
 import { sendCookie } from "../utils/features.js";
 import { Schedule } from "../models/schedule.js";
 import { Query } from "../models/queries.js";
+import { Diet } from "../models/diet.js";
 
 
 export const register = async(req , res , next)=>{
@@ -106,3 +107,22 @@ export const sendquery = async (req, res) => {
     });
   }
 };
+
+export const getMySchedule = async(req,res)=>{
+  try{
+  const schedule = await Schedule.find({plan:req.user.subscription.plan});
+  res.render("userschedule", {schedule});
+  }catch(e){
+console.log(e)
+  }
+}
+
+export const getDiet = async(req,res)=>{
+  try{
+  const diet = await Diet.find();
+  res.render("meal", {diet});
+  }catch(e){
+console.log(e)
+  }
+}
+

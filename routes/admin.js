@@ -1,6 +1,6 @@
 import express from "express";
 import { User } from "../models/user.js";
-import { addSchedule, addplan, createSchedule, deletePlan, deleteQuery, deleteSchedule, deleteUser, displaySchedule, getquery, showplan } from "../controllers/admin.js";
+import { addSchedule, addplan, createSchedule, deletePlan, deleteQuery, deleteSchedule, deleteUser, displaySchedule, getquery, sendDiet, showplan, viewDiet } from "../controllers/admin.js";
 import { upload } from "../utils/multer.js";
 import { Plan } from "../models/plans.js";
 const router = express.Router();
@@ -48,6 +48,10 @@ router.get("/manageUser/delete/:id", deleteUser);
 router.get("/getquery" , getquery);
 
 router.get("/query/delete/:id",deleteQuery);
+
+router.get("/addDiet" , viewDiet )
+
+router.post("/addDiet" , sendDiet  )
 
 
 export default router;
