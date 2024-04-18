@@ -2,6 +2,7 @@ import  express from "express";
 import path from "path";
 import { config } from "dotenv";
 import userRouter from "./routes/user.js"
+import paymentRouter from "./routes/payment.js"
 import adminRouter from "./routes/admin.js"
 import cookieParser from "cookie-parser";
 import {Plan} from "./models/plans.js";
@@ -26,6 +27,7 @@ app.set("view engine", "ejs");
 //Using routes
 app.use(userRouter);
 app.use(adminRouter);
+app.use(paymentRouter);
 
 
 app.get("/",async(req , res)=>{
