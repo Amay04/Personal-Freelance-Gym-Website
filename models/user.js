@@ -23,7 +23,20 @@ const schema = new mongoose.Schema({
     createdAt:{
         type:Date,
         default:Date.now
-    }
+    },
+
+    subscription :{
+        plan:{
+            type:mongoose.Schema.Types.ObjectId,
+            ref: "Plan"
+        },
+        startDate : {
+            type:Date,
+        },
+        endDate: {
+            type:Date,
+        },
+    },
 });
 
 export const User = mongoose.model("User",schema);
