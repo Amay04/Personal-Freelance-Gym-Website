@@ -32,7 +32,7 @@
               Transitioning to an online business allows me to reach a broader audience and provide personalized
               training programs, nutritional guidance, and ongoing support. Through virtual sessions and tailored plans,
               I aim to empower clients to thrive in their health journey.</p>
-            <button type="submit">Reach Out</button>
+            <a href="/contactus" type="submit">Reach Out</a>
           </div>
         </div>
       </div>
@@ -77,9 +77,9 @@
         <p>Simple and affordable price plans for you</p>
         <div class="row">
           <% plans.forEach(plan=> { %>
-            <div class="pricing-column col-lg-4 col-md-12">
+            <div class="pricing-column col-lg-4 col-md-12 m-auto">
 
-              <div class="card m-8" style="width: 20rem;">
+              <div class="card m-auto" style="width: 20rem;">
                 <img src="<%= plan.image %>" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">
@@ -95,7 +95,8 @@
                   <p class="card-text">
                     <%= plan.description2 %>
                   </p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                  
+                  <a href="/pay/<%= plan.id %>" class="btn btn-primary">Go somewhere</a>
                 </div>
               </div>
             </div>

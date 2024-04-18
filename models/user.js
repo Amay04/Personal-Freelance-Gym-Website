@@ -24,11 +24,10 @@ const schema = new mongoose.Schema({
         type:Date,
         default:Date.now
     },
-
     subscription :{
         plan:{
             type:mongoose.Schema.Types.ObjectId,
-            ref: "Plan"
+            ref: "Plan",
         },
         startDate : {
             type:Date,

@@ -15,15 +15,16 @@ res.redirect("/manageUser");
 //Manage Plan
 export const addplan = async (req, res) => {
   try {
-    const { name, amount, description, description1, description2 } = req.body;
+    const { name, amount, description, description1, description2, duration } = req.body;
 
     await Plan.create({
-      name: name,
-      amount: amount,
+      name,
+      amount,
       image:`/uploads/${req.file.filename}`,
-      description: description,
-      description1: description1,
-      description2: description2,
+       description,
+       description1,
+       description2,
+      duration
     });
     res.render("addPlans");
   } catch (e) {

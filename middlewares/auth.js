@@ -11,3 +11,12 @@ export const isAuth = async (req,res, next)=>{
     next()
 
 }
+
+
+export const isLogin = async (req,res, next)=>{
+   const {token} = req.cookies;
+
+   if(!token) return res.render("login", {error:"please login before buying Plan"})
+
+    next()
+}

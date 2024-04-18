@@ -47,10 +47,11 @@
     letter-spacing: 1px;
     font-size: 20px;
 }
-#heading div button{
+#heading div a{
     padding: 10px 15px;
     text-transform: uppercase;
     background-color: #09a75d;
+    text-decoration: none;
     border: none;
     color: #000;
     font-weight: 500;

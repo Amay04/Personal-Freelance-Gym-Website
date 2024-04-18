@@ -15,7 +15,6 @@ const planSchema = new mongoose.Schema({
     description:{
         type:String,
     },
-
     description1:{
         type:String,
     },
