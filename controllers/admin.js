@@ -75,7 +75,7 @@ export const addSchedule = async (req, res) => {
 
 export const createSchedule = async (req, res) => {
   try {
-    const { title, time, plan, link } = req.body;
+    const { title, time, plan, link,date } = req.body;
 
     const Plans = await Plan.findOne({ name: plan });
 
@@ -84,6 +84,7 @@ export const createSchedule = async (req, res) => {
       time,
       plan: Plans._id,
       link,
+      date,
     });
 
     res.redirect("/addschedule");
@@ -153,6 +154,7 @@ export const deleteQuery = async (req,res) =>{
   }
 }
 
+// diet
 export const viewDiet = async(req,res) =>{
   try{
 res.render("addDiet");
@@ -184,3 +186,33 @@ export const sendDiet = async(req,res) =>{
     });
   }
 }
+
+
+export const showDiet = async (req, res) => {
+  try {
+
+    const diet = await Diet.find();
+    res.render("showDiet", { diet });
+    
+  } catch (e) {
+    res.status(404).json({
+      success: false,
+      message: "Something went wrong",
+    });
+  }
+};
+
+
+
+export const deleteDiet = async (req, res) => {
+  try {
+    await Diet.deleteOne({ _id: req.params.id });
+    res.redirect("/showdiet");
+  } catch (e) {
+    console.log(e);
+    res.status(404).json({
+      success: false,
+      message: "Something went wrong",
+    });
+  }
+};

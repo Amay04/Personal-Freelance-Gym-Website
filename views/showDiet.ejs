@@ -2,7 +2,7 @@
 <main class="mt-5 pt-3">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-12 fw-bold fs-3">Manage Schedule</div>
+            <div class="col-md-12 fw-bold fs-3">View Diet</div>
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">Data Table</div>
@@ -18,18 +18,19 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <% schedule.forEach(function (allSchedule , index) { %>
+                          <% diet.forEach(function (diets , index) { %>
                             <tr>
                               <th scope="col"> <%= index + 1 %> </th>
-                              <td><%= allSchedule.title %></td>
-                              <td><%= allSchedule.plan.name %></td>
-                              <td><%= allSchedule.time %></td>
-                              <td><a href="<%= allSchedule.link %>">Link</a></td>
+                              <td><%= diets.meal1 %></td>
+                              <td><%= diets.meal2 %></td>
+                              <td><%= diets.meal3 %></td>
+                              <td><%= diets.meal4 %></td>
                               <td>
-                                  <a href="/manageSchedule/delete/<%= allSchedule._id %>"  class="btn btn-danger">Delete </a>
+                                  <a href="/diet/delete/<%= diets._id %>"  class="btn btn-danger">Delete </a>
                               </td>
                             </tr>
                           <% }) %>
+                        
                         </tbody>
                       </table>
                     </div>
