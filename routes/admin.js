@@ -6,9 +6,10 @@ import { Plan } from "../models/plans.js";
 const router = express.Router();
 
 router.get("/admin",async(req,res)=>{
-    const allUser = await User.find({role:"user"});
+    const allUser = await User.find({role:"user"}).populate('subscription.plan');
+    const subscriptionCount = await User.countDocuments({ 'subscription.plan': { $exists: true } });
     const plan = await Plan.find();
-    res.render("admin",{allUser,plan});
+    res.render("admin",{allUser,plan, subscriptionCount});
 });
 
 //Manage Plan

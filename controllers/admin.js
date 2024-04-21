@@ -3,6 +3,7 @@ import { Plan } from "../models/plans.js";
 import { Query } from "../models/queries.js";
 import { Schedule } from "../models/schedule.js";
 import { User } from "../models/user.js";
+import fs from "fs";
 
 
 // Manage User
@@ -46,6 +47,17 @@ export const showplan = async (req, res) => {
 
 export const deletePlan = async (req, res) => {
   try {
+    
+    const plan  = await Plan.findById(req.params.id);
+    const filePath = plan.image;
+    fs.unlink(`./public/${filePath}`, (e)=>{
+      if (e){
+        console.log(e)
+      }
+      else{
+        console.log("Image deleted Successfully");
+      }
+    });
 
     await Schedule.deleteMany({plan: req.params.id});
     await Plan.deleteOne({_id: req.params.id});

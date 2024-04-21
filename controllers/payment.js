@@ -56,7 +56,6 @@ export const paymentInitiation = async (req, res) => {
     axios
       .request(options)
       .then(function (response) {
-        console.log(response.data);
         const url = response.data.data.instrumentResponse.redirectInfo.url;
         res.redirect(url);
       })
@@ -67,8 +66,7 @@ export const paymentInitiation = async (req, res) => {
 
   export const paymentHandling = (req, res) => {
     const { merchantTransactionId, userId , planId} = req.params;
-    console.log(merchantTransactionId, userId, planId);
-    console.log("merchanttransactionId", merchantTransactionId);
+
     if (merchantTransactionId) {
       const xverify =
         sha256(
@@ -93,7 +91,7 @@ export const paymentInitiation = async (req, res) => {
         .then(function (response) {
           console.log(response.data);
           if (response.data.code === "PAYMENT_SUCCESS") {
-            updateUserSubscription( userId, planId);
+            updateUserSubscription(userId, planId);
             //redirect user to frontend success page
             res.render("success")
           } else if (response.data.code === "PAYMENT_ERROR") {
@@ -101,7 +99,7 @@ export const paymentInitiation = async (req, res) => {
           } else {
             //pending page
           }
-          res.send(response.data);
+       
         })
         .catch(function (error) {
           console.log(error);

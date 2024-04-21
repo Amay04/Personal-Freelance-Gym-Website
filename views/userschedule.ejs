@@ -66,20 +66,27 @@
                                 </tr>
                             </thead>
                             <tbody>
-
-                                <% schedule.forEach( function(schedules , index) { %>
-                                 
-                                
                                 <tr>
-                                    <th scope="row"><%=index+1 %></th>
-                                    <td><%= schedules.title %></td>
-                                    <td><%=  schedules.plan %></td>
-                                    <td><%=  schedules.time %></td>
-                                    <td><a href="<%=  schedules.link %>">Join</a></td>
-                                    <td><%=  schedules.date %></td>
-                                </tr>
-                                <!-- Add more rows with schedule data -->
-                                <% }) %>
+                                <% if (schedule.length <= 0) { %>
+                                <tr><td colspan="6">
+                                        <div class="alert alert-danger" role="alert">
+                                            No Schedule
+                                           </div>
+                                        </td>
+                                  </tr>
+                                <% } else { %>
+                                    <% schedule.forEach( function(schedules , index) { %>
+                                        <tr>
+                                            <th scope="row"><%=index+1 %></th>
+                                            <td><%= schedules.title %></td>
+                                            <td><%=  schedules.plan.name %></td>
+                                            <td><%=  schedules.time %></td>
+                                            <td><a href="<%=  schedules.link %>">Join</a></td>
+                                            <td><%=  schedules.date.toDateString() %></td>
+                                        </tr>
+                                        <% }) %>
+                                <% } %>
+                                
                             </tbody>
                         </table>
                     </div>

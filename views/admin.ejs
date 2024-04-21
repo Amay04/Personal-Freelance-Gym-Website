@@ -4,12 +4,14 @@
     <main class="mt-5 pt-3">
         <div class="container-fluid">
             <div class="row">
-                
+
                 <div class="col-md-12 fw-bold fs-3">Dashboard</div>
                 <div class="col-md-3 m-auto">
                     <div class="card text-bg-primary mb-3 text-center" style="max-width: 18rem;">
                         <div class="card-body">
-                            <p class="card-text fw-bold fs-2"><%= allUser.length %> </p>
+                            <p class="card-text fw-bold fs-2">
+                                <%= allUser.length %>
+                            </p>
                             <hr>
                             <h5 class="card-title">Active User</h5>
                         </div>
@@ -18,7 +20,9 @@
                 <div class="col-md-3 m-auto">
                     <div class="card text-bg-secondary mb-3 text-center" style="max-width: 18rem;">
                         <div class="card-body">
-                            <p class="card-text fw-bold fs-2"><%= plan.length %></p>
+                            <p class="card-text fw-bold fs-2">
+                                <%= plan.length %>
+                            </p>
                             <hr>
                             <h5 class="card-title">Active Plans</h5>
                         </div>
@@ -27,7 +31,10 @@
                 <div class="col-md-3 m-auto">
                     <div class="card text-bg-success mb-3 text-center" style="max-width: 18rem;">
                         <div class="card-body">
-                            <p class="card-text fs-2 fw-bold">8</p>
+                            <p class="card-text fw-bold fs-2">
+                                <%= subscriptionCount %>
+                            </p>
+
                             <hr>
                             <h5 class="card-title">Active Subscriber</h5>
                         </div>
@@ -51,10 +58,23 @@
                             <tbody>
                                 <% allUser.forEach(function(users , index) { %>
                                     <tr>
-                                        <th scope="row"> <%= index+1 %></th>
-                                        <td><%= users.name %></td>
-                                        <td><%= users.email %></td>
-                                        <td>none</td>
+                                        <th scope="row">
+                                            <%= index+1 %>
+                                        </th>
+                                        <td>
+                                            <%= users.name %>
+                                        </td>
+                                        <td>
+                                            <%= users.email %>
+                                        </td>
+                                        <td>
+                                            <% if (users.subscription && users.subscription.plan) { %>
+                                                <%= users.subscription.plan.name %>
+                                                  
+                                                    <% } else { %>
+                                                        None 
+                                                        <% } %>
+                                        </td>
                                     </tr>
                                     <% }) %>
 
