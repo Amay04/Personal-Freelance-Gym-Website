@@ -109,13 +109,6 @@ export const sendquery = async (req, res) => {
 };
 
 export const getMySchedule = async(req,res)=>{
-//   try{
-//   const schedule = await Schedule.find({plan:req.user.subcription.plan});
-
-//   res.render("userschedule", {schedule});
-//   }catch(e){
-// console.log(e)
-  // }
   try {
     const schedule = await Schedule.find({ plan: req.user.subscription.plan }).populate('plan');
     res.render('userschedule', { schedule });
