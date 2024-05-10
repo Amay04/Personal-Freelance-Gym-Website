@@ -1,13 +1,22 @@
 import  express  from "express";
 
-import { paymentHandling, paymentInitiation } from "../controllers/payment.js";
-import { isLogin } from "../middlewares/auth.js";
+import { payment, updateSubscription } from "../controllers/payment.js";
+
+import {isLogin} from "../middlewares/auth.js";
+
 const router = express.Router();
 
-router.get("/pay/:id", isLogin ,paymentInitiation);
+router.post("/create-order", payment);
 
-  
-router.get("/redirect-url/:merchantTransactionId/:userId/:planId", paymentHandling);
-  
+router.get('/isLoggedIn', isLogin, (req, res) => {
 
+  res.json({ isLoggedIn: true });
+});
+
+router.get('/success',(req, res) =>{
+  res.render("success");
+});
+
+router.post("/update-subscription", updateSubscription);
+  
   export default router;

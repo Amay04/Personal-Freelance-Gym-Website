@@ -1,113 +1,81 @@
-import axios from "axios";
 import uniqid from "uniqid";
-import sha256 from "sha256";
-import jwt from "jsonwebtoken";
-import { updateUserSubscription } from "../subscription/controller.js";
+import razorpay from "razorpay";
 import { Plan } from "../models/plans.js";
 import { User } from "../models/user.js";
 
-//payment innitiated
 
-export const paymentInitiation = async (req, res) => {
-  const payeEndpoint = "/pg/v1/pay";
+// Assuming you have initialized your Razorpay instance
+const instance = new razorpay({
+  key_id: 'rzp_test_08wCrm3guGbtKN',
+  key_secret:'pKYXaOw6hryQsRoKjjPfwmz2'
+});
 
-  const merchantTransactionId = uniqid();
-  let planId = req.params.id;
-  const { token } = req.cookies;
+// Define your route handler function
+export const payment = async (req, res) => {
+  try {
+    // Extract necessary information from the request, such as the plan ID
+    const { planId } = req.body;
+    let user = req.user;
+    
+    // Assuming you have a function to retrieve plan details from a database or other source
+    const plan = await Plan.findById(planId);
 
-  const decoded = jwt.verify(token, process.env.JWT_SECRET);
-  req.user = await User.findById(decoded._id);
-
-  const plan = await Plan.findById(planId);
-  let amount = plan.amount;
-
-  let userId = req.user._id;
-  const payload = {
-    merchantId: process.env.MERCHANT_ID,
-    merchantTransactionId: merchantTransactionId,
-    merchantUserId: userId,
-    amount: amount * 100,
-    redirectUrl: `http://localhost:${process.env.PORT}/redirect-url/${merchantTransactionId}/${userId}/${planId}`,
-    redirectMode: "REDIRECT",
-    paymentInstrument: {
-      type: "PAY_PAGE",
-    },
-  };
-
-  const bufferobj = Buffer.from(JSON.stringify(payload), "utf8");
-  const baseEncodedpayload = bufferobj.toString("base64");
-  const xverify =
-    sha256(baseEncodedpayload + payeEndpoint + process.env.SALT_KEY) +
-    "###" +
-    process.env.SALT_INDEX;
-
-  const options = {
-    method: "post",
-    url: `${process.env.PHONE_PE_URL}${payeEndpoint}`,
-    headers: {
-      accept: "application/json",
-      "content-Type": "application/json",
-      "X-VERIFY": xverify,
-    },
-    data: {
-      request: baseEncodedpayload,
-    },
-  };
-  axios
-    .request(options)
-    .then(function (response) {
-      const url = response.data.data.instrumentResponse.redirectInfo.url;
-      res.redirect(url);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-};
-
-export const paymentHandling = (req, res) => {
-  const { merchantTransactionId, userId, planId } = req.params;
-
-  if (merchantTransactionId) {
-    const xverify =
-      sha256(
-        `/pg/v1/status/${process.env.MERCHANT_ID}/${merchantTransactionId}` +
-          process.env.SALT_KEY
-      ) +
-      "###" +
-      process.env.SALT_INDEX;
-
-    const options = {
-      method: "get",
-      url: `${process.env.PHONE_PE_URL}/pg/v1/status/${process.env.MERCHANT_ID}/${merchantTransactionId}`,
-      headers: {
-        accept: "application/json",
-        "Content-Type": "application/json",
-        "X-MERCHANT_ID": merchantTransactionId,
-        "X-VERIFY": xverify,
+    // Create a Razorpay order using the retrieved plan details
+    const order = await instance.orders.create({
+      amount: plan.amount * 100, // Amount should be in paise
+      currency: 'INR', // Change currency as per your requirement
+      receipt: uniqid, // Unique order ID or receipt ID
+      payment_capture: 1, // Automatically capture payments
+      notes: { // Additional notes about the order
+        userId: user._id,
+        userName:user.name,
+        userEmail: user.email,
+        planId: plan._id,
       },
-    };
+    });
+console.log(order)
+    // Send the order details back to the client
+    res.json(order);
 
-    axios
-      .request(options)
-      .then(function (response) {
-        console.log(response.data);
-        if (response.data.code === "PAYMENT_SUCCESS") {
-          updateUserSubscription(userId, planId);
-          //redirect user to frontend success page
-          res.render("success");
-        } else if (response.data.code === "PAYMENT_ERROR") {
-          res.render("failure");
-        } else {
-          res.json({
-            succes: false,
-            message: "Something went wrong.",
-          });
-        }
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  } else {
-    res.send({ error: "error" });
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ error: 'An error occurred while creating the order' });
   }
 };
+
+
+
+
+// Define your route handler function to update subscription
+export const updateSubscription = async (req, res) => {
+  try {
+      // Extract necessary information from the request
+      const {userEmail, planId } = req.body;
+
+      const plan = await Plan.findById(planId);
+
+      // Find the user based on the provided email
+      const user = await User.findOne({ email: userEmail });
+
+      // Update the user's subscription information
+      user.subscription = {
+          plan: plan._id,
+          startDate: new Date(),
+          // You may calculate the end date based on the plan duration or any other logic
+          // For simplicity, let's assume the subscription is valid for 30 days
+          endDate: new Date(Date.now() + plan.duration * 24 * 60 * 60 * 1000)
+      };
+
+      // Save the updated user object
+      await user.save();
+
+      // Send a success response
+      res.render("success");
+
+  } catch (error) {
+      console.error('Error updating subscription:', error);
+      res.status(500).json({ error: 'An error occurred while updating the subscription' });
+  }
+};
+
+
