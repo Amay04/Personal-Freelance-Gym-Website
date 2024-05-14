@@ -16,7 +16,7 @@ router.get('/isLoggedIn', isLogin, (req, res) => {
 router.get('/success',(req, res) =>{
   res.render("success");
 });
-
+ 
 router.post("/update-subscription", updateSubscription);
   
   export default router;

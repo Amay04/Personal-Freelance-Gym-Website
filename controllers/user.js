@@ -20,10 +20,14 @@ export const register = async(req , res , next)=>{
         user = await User.create({name,email, password:hashedPassword});
     
 
-    sendCookie(user , res , "Registered and Login Successfully", 200)
+    sendCookie(user , res , "Registered and Login Successfully", 200);
 
     }catch(e){
        console.log(e)
+       res.status(404).json({
+        success: false,
+        message: "Something went wrong",
+      });
     }
 }
 
@@ -35,7 +39,6 @@ export const login = async(req,res,next)=>{
 
     if(!user) return res.render("register" , {error : "Register First"})
 
-    
     const isMatch = await bcrypt.compare(password, user.password);
 
     if(!isMatch) return res.status(404).render("login" , {error : "Incorrect Password"})
@@ -48,6 +51,10 @@ export const login = async(req,res,next)=>{
 
 catch(e){
     console.log(e)
+    res.status(404).json({
+      success: false,
+      message: "Something went wrong",
+    });
 }
 }
 
@@ -114,6 +121,10 @@ export const getMySchedule = async(req,res)=>{
     res.render('userschedule', { schedule });
   } catch (error) {
     console.error(error);
+    res.status(404).json({
+      success: false,
+      message: "Something went wrong",
+    });
   }
 }
 
@@ -122,7 +133,11 @@ export const getDiet = async(req,res)=>{
   const diet = await Diet.find();
   res.render("meal", {diet});
   }catch(e){
-console.log(e)
+console.log(e);
+res.status(404).json({
+  success: false,
+  message: "Something went wrong",
+});
   }
 }
 

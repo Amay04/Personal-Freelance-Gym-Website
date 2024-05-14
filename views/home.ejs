@@ -26,7 +26,7 @@
             <img src="Images/gym.jpg" alt="Trainer img">
           </div>
           <div class="col-lg-6 col-md-12">
-            <h1>amay naik</h1>
+            <h1>Nayan Patil</h1>
             <p>Fitness trainer</p>
             <p>As a dedicated gym coach, I am passionate about helping individuals achieve their fitness goals.
               Transitioning to an online business allows me to reach a broader audience and provide personalized
@@ -131,29 +131,21 @@
         <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
         <script src="script.js"></script>
-        <!-- Your JavaScript code -->
         <script>
-        // Add an event listener to each "Buy Now" button
+
 document.querySelectorAll('.btn-primary').forEach(button => {
   button.addEventListener('click', async () => {
     try {
-      // Make a POST request to check if the user is logged in
       const isLoggedInResponse = await axios.get('/isLoggedIn');
 
-      // If the user is logged in, proceed with creating the Razorpay order
       if (isLoggedInResponse.data.isLoggedIn) {
-        // Extract plan ID or other necessary information from the button or its parent container
-        const planId = button.getAttribute('id'); // Assuming you have a data attribute for plan ID
+        const planId = button.getAttribute('id'); 
 
-        // Make a POST request to your server to create a Razorpay order dynamically for the selected plan
         const response = await axios.post('/create-order', { planId: planId });
 
-        // Handle the response to initialize the Razorpay payment widget
         const razorpayOrder = response.data;
-        console.log(razorpayOrder);
         initializeRazorpayPayment(razorpayOrder);
       } else {
-        // If the user is not logged in, redirect to the login page
         window.location.href = '/login';
       }
     } catch (error) {
